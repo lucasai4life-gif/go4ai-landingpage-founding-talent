@@ -1,0 +1,24 @@
+{
+  "name": "go4ai-founding-talent-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Landing page + thu lead GO4AI Founding Talent Challenge 2026 (React + Vite, Node.js, SQLite)",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix frontend",
+    "dev": "concurrently -n server,web -c green,cyan \"npm run dev --prefix server\" \"npm run dev --prefix frontend\"",
+    "build": "npm run build --prefix frontend",
+    "start": "npm run start --prefix server",
+    "test": "node --test tests/*.test.js",
+    "backup": "node server/scripts/backup.js",
+    "telegram:chat-id": "node server/scripts/telegram-chat-id.js",
+    "telegram:test": "node server/scripts/telegram-test.js",
+    "leads:export": "node server/scripts/export-leads.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+frontend/dist/
+.env
+data/*.sqlite*
+data/exports/
+private-files/*
+!private-files/.gitkeep
+backups/
