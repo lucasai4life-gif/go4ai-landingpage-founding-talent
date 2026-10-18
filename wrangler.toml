@@ -1,0 +1,9 @@
+name = "go4ai-landingpage-founding-talent"
+pages_build_output_dir = "frontend/dist"
+compatibility_date = "2026-09-28"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "go4ai-founding-talent-leads"
+database_id = "5c4b2968-6645-4db0-9e0b-bfb0ae72f677"

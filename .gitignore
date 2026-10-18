@@ -6,3 +6,4 @@ data/exports/
 private-files/*
 !private-files/.gitkeep
 backups/
+.wrangler/
