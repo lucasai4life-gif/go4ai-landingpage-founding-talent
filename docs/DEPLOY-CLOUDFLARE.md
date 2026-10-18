@@ -1,16 +1,22 @@
-# Ghi chú khi deploy lên Cloudflare (chưa thực hiện)
+# Hướng dẫn & Cấu hình triển khai Cloudflare Pages
 
-Bản hiện tại chạy localhost theo tài liệu hướng dẫn. Cloudflare **không chạy được** tiến trình Node.js lâu dài và file SQLite cục bộ, nên khi deploy cần đổi phần máy chủ:
+Dự án đã được triển khai lên Cloudflare Pages kết hợp Pages Functions và Cloudflare D1.
 
-| Localhost | Cloudflare tương ứng |
-|---|---|
-| `frontend/dist` (Vite build) | Cloudflare Pages — deploy nguyên thư mục `dist` |
-| Express `server/src/app.js` | Pages Functions (`functions/api/*.js`) hoặc một Worker |
-| SQLite `data/go4ai.sqlite` | Cloudflare D1 (cũng là SQLite — dùng lại được câu lệnh `CREATE TABLE` trong `server/src/db.js`) |
-| `private-files/` | Cloudflare R2 (nếu sau này cần tệp) |
-| `.env` | Biến môi trường / Secrets của Pages (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `ADMIN_TOKEN`) |
+## Kiến trúc triển khai
 
-Phần có thể dùng lại gần như nguyên vẹn: `server/src/validate.js`, `server/src/telegram.js` (dùng `fetch` chuẩn), schema bảng `leads`.
-Phần cần viết lại: lớp truy cập DB (`env.DB.prepare(...).bind(...).run()` thay cho `node:sqlite`), rate limit (dùng Cloudflare Rate Limiting/Turnstile thay cho bộ nhớ trong tiến trình), và gửi Telegram nên đặt trong `ctx.waitUntil(...)`.
+| Thành phần | Localhost | Cloudflare Pages |
+|---|---|---|
+| **Frontend** | React 19 + Vite 8 (`frontend/dist`) | Cloudflare Pages — tự động build từ source (`frontend/dist`) |
+| **API Server** | Express 5 (`server/src/app.js`) | Cloudflare Pages Functions (`functions/api/*.js`) |
+| **Database** | SQLite qua `node:sqlite` (`data/go4ai.sqlite`) | Cloudflare D1 (`go4ai-founding-talent-leads`) |
+| **Môi trường & Secrets** | `.env` | Cloudflare Pages Environment Variables / Secrets (`DB`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `ADMIN_TOKEN`) |
 
-Frontend gọi `/api/...` theo đường dẫn tương đối nên không phải sửa khi chuyển sang Pages Functions.
+## Cấu hình tự động kết nối GitHub
+
+- **Repository**: `https://github.com/lucasai4life-gif/go4ai-landingpage-founding-talent`
+- **Branch sản xuất**: `main`
+- **Lệnh build**: `npm --prefix frontend install && npm run build --prefix frontend`
+- **Thư mục đầu ra**: `frontend/dist`
+- **Pages URL**: `https://go4ai-landingpage-founding-talent.pages.dev`
+
+Mỗi khi có commit mới được push lên nhánh `main`, Cloudflare Pages sẽ tự động kích hoạt tiến trình build và deploy.
