@@ -148,6 +148,34 @@ export const rounds = [
   },
 ];
 
+export const foundingOpportunity = {
+  badge: 'FOUNDING OPPORTUNITY',
+  eyebrow: 'ĐẶC QUYỀN DÀNH CHO ỨNG VIÊN VƯỢT QUA VÒNG 3',
+  title: 'VƯỢT QUA VÒNG 3. MỞ RA CƠ HỘI TRỞ THÀNH MỘT PHẦN ĐỘI NGŨ KIẾN TẠO GO4AI.',
+  desc: 'Ứng viên được công bố Đạt Vòng 3 sẽ được GO4AI trao đổi riêng về những cơ hội và quyền lợi hợp tác trong giai đoạn tiếp theo.',
+  benefits: [
+    {
+      no: '01',
+      title: 'QUYỀN LỢI TÀI CHÍNH',
+      desc: 'Tiếp cận chính sách đãi ngộ và cơ chế quyền lợi tài chính khi hợp tác cùng GO4AI.',
+      type: 'finance',
+    },
+    {
+      no: '02',
+      title: 'LỘ TRÌNH CO-FOUNDER / CORE TEAM',
+      desc: 'Tìm hiểu cơ hội, điều kiện và định hướng gia nhập đội ngũ đồng sáng lập hoặc nhân sự nòng cốt.',
+      type: 'leadership',
+    },
+    {
+      no: '03',
+      title: 'CƠ HỘI THỰC CHIẾN 90 NGÀY',
+      desc: 'Trao đổi trực tiếp cùng Founder về vai trò, mục tiêu và dự án thực tế phù hợp với năng lực.',
+      type: 'execution',
+    },
+  ],
+  disclaimer: 'Thông tin chi tiết chỉ được công bố cho ứng viên vượt qua Vòng 3. Vai trò và quyền lợi hợp tác được xem xét theo năng lực, kết quả thực chiến và thỏa thuận riêng; không tự động phát sinh quyền sở hữu hoặc chức danh.',
+};
+
 export const directions = [
   { no: '01', key: 'BUSINESS', name: 'PHÁT TRIỂN KINH DOANH', desc: 'Dành cho người quan tâm đến khách hàng, thị trường, mô hình doanh thu và phát triển hoạt động kinh doanh.' },
   { no: '02', key: 'TECHNOLOGY', name: 'CÔNG NGHỆ & SẢN PHẨM AI', desc: 'Dành cho người yêu thích công nghệ, xây dựng sản phẩm, phát triển ứng dụng và giải pháp AI.' },

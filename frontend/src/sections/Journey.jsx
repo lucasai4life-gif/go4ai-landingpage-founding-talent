@@ -1,8 +1,8 @@
 import { animate, motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Reveal from '../components/Reveal.jsx';
 import SplitText from '../components/SplitText.jsx';
-import { rounds } from '../content.js';
+import { foundingOpportunity, rounds } from '../content.js';
 import { EASE } from '../lib/motion.js';
 
 /* ---------- Visual từng vòng ---------- */
@@ -219,6 +219,119 @@ function Chapter({ round, index, onActive }) {
   );
 }
 
+/* ---------- Cột mốc đặc biệt: Founding Opportunity giữa Vòng 3 & 4 ---------- */
+
+function IconFinance() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 3h12l4 6-10 12L2 9l4-6z" />
+      <path d="M2 9h20" />
+      <path d="m10 3-2 6 4 12 4-12-2-6" />
+    </svg>
+  );
+}
+
+function IconLeadership() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      <path d="m17 11 2 2 4-4" />
+    </svg>
+  );
+}
+
+function IconExecution() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+      <path d="M12 2v4" />
+      <path d="M12 18v4" />
+      <path d="M2 12h4" />
+      <path d="M18 12h4" />
+    </svg>
+  );
+}
+
+function FoundingOpportunityMilestone() {
+  const iconMap = {
+    finance: IconFinance,
+    leadership: IconLeadership,
+    execution: IconExecution,
+  };
+
+  return (
+    <div className="founding-opportunity-wrap" id="founding-opportunity" aria-label="Founding Opportunity — Cột mốc đặc quyền giữa Vòng 3 và Vòng 4">
+      {/* Liên kết thị giác từ Vòng 03 */}
+      <div className="fo-connector-in" aria-hidden="true">
+        <span className="fo-connector-line" />
+        <span className="fo-connector-pill mono">
+          <span className="fo-connector-dot" />
+          ROUND 03 → FOUNDING OPPORTUNITY
+        </span>
+        <span className="fo-connector-line" />
+      </div>
+
+      <Reveal className="fo-card" amount={0.2}>
+        <div className="fo-head">
+          <div className="fo-eyebrow-wrap">
+            <span className="fo-eyebrow mono">
+              <span className="fo-sparkle" aria-hidden="true">✦</span>
+              {foundingOpportunity.badge}
+            </span>
+            <span className="fo-sub-eyebrow mono">
+              {foundingOpportunity.eyebrow}
+            </span>
+          </div>
+          <SplitText as="h3" className="fo-title" text={foundingOpportunity.title} step={0.025} />
+          <Reveal as="p" className="fo-desc" i={2}>
+            {foundingOpportunity.desc}
+          </Reveal>
+        </div>
+
+        <div className="fo-grid">
+          {foundingOpportunity.benefits.map((b, i) => {
+            const Icon = iconMap[b.type] || IconFinance;
+            return (
+              <Reveal key={b.no} className="fo-item" i={i + 1}>
+                <div className="fo-item-top">
+                  <div className="fo-item-icon">
+                    <Icon />
+                  </div>
+                  <span className="fo-item-index mono">0{i + 1} / 03</span>
+                </div>
+                <h4 className="fo-item-title">{b.title}</h4>
+                <p className="fo-item-desc">{b.desc}</p>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <div className="fo-foot">
+          <svg className="fo-foot-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+          </svg>
+          <p className="fo-disclaimer">{foundingOpportunity.disclaimer}</p>
+        </div>
+      </Reveal>
+
+      {/* Liên kết thị giác tiếp nối sang Vòng 04 */}
+      <div className="fo-connector-out" aria-hidden="true">
+        <span className="fo-connector-line-down" />
+        <span className="fo-connector-pill fo-connector-pill-out mono">
+          BƯỚC VÀO ROUND 04: THỰC CHIẾN 90 NGÀY
+          <span className="fo-connector-arrow">↓</span>
+        </span>
+        <span className="fo-connector-line-down" />
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Section ---------- */
 
 export default function Journey() {
@@ -265,7 +378,10 @@ export default function Journey() {
         </aside>
         <div className="journey-chapters">
           {rounds.map((r, i) => (
-            <Chapter key={r.key} round={r} index={i} onActive={setActive} />
+            <Fragment key={r.key}>
+              <Chapter round={r} index={i} onActive={setActive} />
+              {r.key === 'meet' && <FoundingOpportunityMilestone />}
+            </Fragment>
           ))}
         </div>
       </div>

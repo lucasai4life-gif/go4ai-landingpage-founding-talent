@@ -510,6 +510,278 @@ g:has(.node.is-on) .node-no { fill: var(--white); transition: fill 0.3s var(--ea
 .seg-solo { background: var(--blue-500); }
 .v-team-note { font-size: 0.75rem; color: var(--gray-500); letter-spacing: 0.06em; margin-top: var(--s-8); display: block; }
 
+/* ---------- Cột mốc đặc biệt: Founding Opportunity giữa Vòng 3 & 4 ---------- */
+.founding-opportunity-wrap {
+  position: relative;
+  margin: var(--s-60) 0;
+  z-index: 2;
+}
+
+.fo-connector-in,
+.fo-connector-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-8);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.fo-connector-in {
+  margin-bottom: calc(-1 * var(--s-16));
+}
+
+.fo-connector-out {
+  margin-top: calc(-1 * var(--s-16));
+}
+
+.fo-connector-line {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--blue-400), var(--green-400));
+}
+
+.fo-connector-line-down {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--green-400), var(--green-600));
+}
+
+.fo-connector-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-8);
+  padding: 6px var(--s-16);
+  border-radius: var(--radius-btn);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  background: var(--white);
+  border: 1px solid var(--green-300);
+  color: var(--green-700);
+  box-shadow: 0 4px 16px rgba(8, 144, 108, 0.12);
+}
+
+.fo-connector-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(8, 144, 108, 0.2);
+}
+
+.fo-connector-pill-out {
+  background: var(--gray-900);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--green-200);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.fo-connector-arrow {
+  color: var(--coral-500);
+  font-weight: 700;
+}
+
+.fo-card {
+  position: relative;
+  background: linear-gradient(160deg, #07261f 0%, #031410 50%, #082d24 100%);
+  border: 1px solid rgba(96, 199, 172, 0.3);
+  border-radius: var(--radius-card);
+  padding: var(--s-48) var(--s-40);
+  color: var(--white);
+  box-shadow:
+    0 24px 64px -16px rgba(2, 28, 22, 0.5),
+    0 0 0 1px rgba(96, 199, 172, 0.15) inset;
+  overflow: hidden;
+}
+
+.fo-card::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(96, 199, 172, 0.2) 0%, rgba(96, 199, 172, 0) 70%);
+  pointer-events: none;
+}
+
+.fo-head {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 54rem;
+  margin: 0 auto var(--s-40);
+}
+
+.fo-eyebrow-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-8);
+  margin-bottom: var(--s-16);
+}
+
+.fo-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-8);
+  padding: 4px var(--s-16);
+  border-radius: var(--radius-btn);
+  background: rgba(96, 199, 172, 0.12);
+  border: 1px solid rgba(96, 199, 172, 0.35);
+  color: var(--green-200);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.fo-sparkle {
+  color: #f7c948;
+}
+
+.fo-sub-eyebrow {
+  font-size: 0.8125rem;
+  color: var(--green-300);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fo-title {
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: var(--s-16);
+}
+
+.fo-desc {
+  font-size: var(--text-l);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 44rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.fo-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-24);
+  margin-bottom: var(--s-32);
+}
+
+.fo-item {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: var(--s-28) var(--s-24);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.fo-item:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(96, 199, 172, 0.45);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4);
+}
+
+.fo-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--s-20);
+}
+
+.fo-item-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(96, 199, 172, 0.12);
+  border: 1px solid rgba(96, 199, 172, 0.25);
+  color: var(--green-200);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.fo-item:hover .fo-item-icon {
+  background: var(--green-500);
+  color: var(--white);
+  border-color: var(--green-400);
+  transform: scale(1.06);
+}
+
+.fo-item-index {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.fo-item-title {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: var(--s-12);
+  line-height: 1.4;
+}
+
+.fo-item-desc {
+  font-size: var(--text-s);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+  margin-top: auto;
+}
+
+.fo-foot {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--s-24);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-12);
+}
+
+.fo-foot-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: rgba(96, 199, 172, 0.7);
+}
+
+.fo-disclaimer {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+}
+
+@media (max-width: 960px) {
+  .fo-card {
+    padding: var(--s-32) var(--s-20);
+  }
+  .fo-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-16);
+  }
+  .fo-title {
+    font-size: 1.375rem;
+  }
+  .fo-desc {
+    font-size: var(--text-m);
+  }
+}
+
 /* Chương 04 — nền tối */
 .chapter-dark { color: var(--white); border-top: 0; }
 .chapter-dark::before {
