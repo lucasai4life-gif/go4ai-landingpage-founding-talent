@@ -13,6 +13,7 @@
     "backup": "node server/scripts/backup.js",
     "telegram:chat-id": "node server/scripts/telegram-chat-id.js",
     "telegram:test": "node server/scripts/telegram-test.js",
+    "telegram:retry": "node server/scripts/telegram-retry.js",
     "leads:export": "node server/scripts/export-leads.js"
   },
   "devDependencies": {
