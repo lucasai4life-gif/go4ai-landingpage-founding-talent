@@ -168,10 +168,12 @@ function Chapter({ round, index, onActive }) {
   const Visual = { questions: QuestionsVisual, tracks: TracksVisual, team: TeamVisual, goal: GoalVisual }[round.visual];
 
   return (
-    <article ref={ref} id={`vong-${round.no}`} className={`chapter chapter-${round.color}`} aria-label={`Vòng ${round.no} — ${round.name}`}>
-      <motion.span className="chapter-bignum" style={{ y: bigY }} aria-hidden="true">
-        {round.no}
-      </motion.span>
+    <article ref={ref} id={`vong-${round.no}`} className={`chapter chapter-${round.color}`} aria-label={`Vòng ${round.no} — ${round.no === '04' ? 'ROUND 04 — THỰC CHIẾN' : `Vòng ${round.no} — ${round.name}`}`}>
+      {round.no !== '04' && (
+        <motion.span className="chapter-bignum" style={{ y: bigY }} aria-hidden="true">
+          {round.no}
+        </motion.span>
+      )}
       <div className="chapter-grid">
         <div className="chapter-copy">
           <Reveal className="chapter-kicker mono">
